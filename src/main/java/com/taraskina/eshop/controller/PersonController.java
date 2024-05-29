@@ -1,8 +1,7 @@
 package com.taraskina.eshop.controller;
 
-import com.taraskina.eshop.entity.User;
-import com.taraskina.eshop.service.UserService;
-import com.taraskina.eshop.service.impl.UserServiceImpl;
+import com.taraskina.eshop.entity.Person;
+import com.taraskina.eshop.service.PersonService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,34 +14,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.Collections;
 import java.util.List;
 
-@Controller
-public class UserController implements UserDetailsService {
-    private UserServiceImpl userService;
 
-    public UserController(UserServiceImpl service) {
-        this.userService = service;
+@Controller
+public class PersonController implements UserDetailsService {
+    private PersonService personService;
+
+    public PersonController(PersonService service) {
+
+        this.personService = service;
     }
 
     @GetMapping("/users")
     public String all(Model model) {
-        List<User> users = userService.findAll();
+        List<Person> users = personService.findAll();
         model.addAttribute("users", users);
 
         return "user/users";
     }
 
     @GetMapping("/users/{id}")
-    public String find(@PathVariable long id,
-                       Model model) {
-        User user = userService.findById(id);
-        model.addAttribute("user", user);
+    public String find(@PathVariable long id, Model model) {
+        Person person = personService.findById(id);
+        model.addAttribute("user", person);
         return "user/user";
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails userDetails = userService.findByName(username)
+
+        UserDetails userDetails = personService
+                .findByName(username)
                 .map(p -> new User(
                         p.getName(),
                         p.getPassword(),

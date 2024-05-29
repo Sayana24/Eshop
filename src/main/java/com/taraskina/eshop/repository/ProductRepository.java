@@ -1,2 +1,7 @@
-package com.taraskina.eshop.repository;public interface ProductRepositiry {
+package com.taraskina.eshop.repository;
+
+import com.taraskina.eshop.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }

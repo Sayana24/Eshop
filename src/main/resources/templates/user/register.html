@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registry</title>
+    <title>Register</title>
 </head>
 <body>
-<form th:action="@{/index}" method="post">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="name"/><br>
+<form th:action="@{/register/load}" method="post" th:object="${person}">
+       <label for="username">Username</label>
+       <input type="text" id="username" th:field="${person.name}" name="name"/><br><br>
     <label for="password">Password</label>
-    <input type="text" id="password" name="password"/><br>
-    <label for="email">Email</label>
-    <input type="text" id="email" name="email"/><br>
-    <label for="phone">Phone</label>
-    <input type="text" id="phone" name="phone"/><br>
-    <button type="submit">Log in</button>
+    <input type="text" id="password" name="password"/><br><br>
+    <label for="email">Email    </label>
+    <input type="text" id="email" name="email"/><br><br>
+    <label for="phone">Phone    </label>
+    <input type="text" id="phone" name="phone"/><br><br>
+    <button type="submit">Register</button>
 </form>
 <br>
 

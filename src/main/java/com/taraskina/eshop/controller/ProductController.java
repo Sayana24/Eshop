@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/product")
+
 @AllArgsConstructor
-public class TaskController {
+public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping("product/index")
+    @GetMapping("/product/index")
     public String indexPage(Model model){
         model.addAttribute("products", productRepository.findAll());
         return "product/index";
